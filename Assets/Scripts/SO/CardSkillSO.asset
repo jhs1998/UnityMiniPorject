@@ -14,22 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skills:
   - name: "\uC57D\uACF5\uACA9"
-    damage: 5
-    guard: 0
-    sprite: {fileID: 21300000, guid: cab24d46feaae284abaf355cf9fbe623, type: 3}
-    drawpercent: 25
-  - name: "\uAC15\uACF5\uACA9"
-    damage: 10
-    guard: 0
-    sprite: {fileID: 21300000, guid: ff9ba224591e8c94db20f655235a4813, type: 3}
-    drawpercent: 25
-  - name: "\uBC29\uD328\uB9C9\uAE30"
-    damage: 0
-    guard: 10
-    sprite: {fileID: 21300000, guid: 2a059dd5e318a73498952cb25f33843d, type: 3}
-    drawpercent: 25
+    rawImage: {fileID: 332875656435034219, guid: 410c45aa3f8a3214a98b3a575ca973e6, type: 3}
+    drawpercent: 3
+  - name: "\uACE8\uBD80\uC218\uAE30"
+    rawImage: {fileID: 6372855279362291748, guid: 10571c989946fbd46aaff219177e2e84, type: 3}
+    drawpercent: 3
+  - name: "\uB9C9\uAE30"
+    rawImage: {fileID: 5562595395278469480, guid: b2f9f14ca8e65ff4e83f05ef1ef466d1, type: 3}
+    drawpercent: 3
   - name: "\uD790\uB9C1"
-    damage: -10
-    guard: 0
-    sprite: {fileID: 21300000, guid: 4dfc17548a6154645b6862912d876202, type: 3}
-    drawpercent: 25
+    rawImage: {fileID: 7320891218824775984, guid: ec57abf334c869e4181f26307112e6c8, type: 3}
+    drawpercent: 3
