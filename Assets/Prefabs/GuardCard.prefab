@@ -219,6 +219,7 @@ GameObject:
   - component: {fileID: 5562595395278469483}
   - component: {fileID: 5562595395278469481}
   - component: {fileID: 5562595395278469480}
+  - component: {fileID: 8802761426428137143}
   m_Layer: 6
   m_Name: GuardCard
   m_TagString: Untagged
@@ -285,6 +286,23 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
+--- !u!114 &8802761426428137143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5562595395278469482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35ce79a903d0e6b4195ce00d9ddbc5bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  originPRS:
+    pos: {x: 0, y: 0, z: 0}
+    rot: {x: 0, y: 0, z: 0, w: 0}
+    scale: {x: 0, y: 0, z: 0}
+  dropArea: {fileID: 0}
 --- !u!1 &5562595395946006311
 GameObject:
   m_ObjectHideFlags: 0

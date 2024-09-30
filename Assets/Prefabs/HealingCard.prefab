@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7320891218824775987}
   - component: {fileID: 7320891218824775985}
   - component: {fileID: 7320891218824775984}
+  - component: {fileID: 2566108902961144342}
   m_Layer: 6
   m_Name: HealingCard
   m_TagString: Untagged
@@ -77,6 +78,18 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
+--- !u!114 &2566108902961144342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7320891218824775986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35ce79a903d0e6b4195ce00d9ddbc5bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7320891219046134402
 GameObject:
   m_ObjectHideFlags: 0
