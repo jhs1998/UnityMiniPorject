@@ -22,9 +22,9 @@ public class CardManager : MonoBehaviour
     [SerializeField] Vector2 minSpawnPosition;
     [SerializeField] Vector2 maxSpawnPosition;
 
-  
 
-    List<Skill> SkillBuffer;
+
+    public static List<Skill> SkillBuffer;
     private List<GameObject> activeCards = new List<GameObject>(); // 활성 카드 리스트
 
     public Skill PopCard()
@@ -34,6 +34,9 @@ public class CardManager : MonoBehaviour
 
         Skill skill = SkillBuffer[0];
         SkillBuffer.RemoveAt(0);
+
+        GameManager.Inst.UpdateDeckNum(SkillBuffer.Count);
+
         return skill;
     }
 
@@ -65,6 +68,8 @@ public class CardManager : MonoBehaviour
         {
             Invoke("AddCard", i);
         }
+
+        GameManager.Inst.UpdateDeckNum(SkillBuffer.Count);
     }
 
     private void Update()
