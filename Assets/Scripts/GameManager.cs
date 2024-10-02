@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Animations.Rigging;
 using UnityEngine.SceneManagement;
+using System;
 
 public class GameManager : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class GameManager : MonoBehaviour
         start, playerTurn, enemyTurn, win, lose
     }
 
+    [SerializeField] Cardcontroller card;
     // 플레이어 오브젝트
     [SerializeField] GameObject player;
     // 적 오브젝트 1, 2
@@ -65,6 +67,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] public float enemy01HP;
     [SerializeField] public float enemy02HP;
 
+    //플레이어 애니
+    [SerializeField] Animator playeranimator;
+    // 적 애니
+    [SerializeField] Animator enemyanimator01;
+    [SerializeField] Animator enemyanimator02;
     // 방어도
     // 전체 코스트
 
@@ -75,6 +82,7 @@ public class GameManager : MonoBehaviour
     float playernowHP;
     float enemynowHP01;
     float enemynowHP02;
+    string monsterName;
 
     private void Awake()
     {
@@ -94,6 +102,15 @@ public class GameManager : MonoBehaviour
 
         turnButton.onClick.AddListener(ButtonClick);
     }
+    public void RegisterCard(Cardcontroller card)
+    {
+        // 카드 이벤트 리스너 등록
+        card.OnAttack01 += AttackCard01;
+        card.OnAttack02 += AttackCard02;
+        card.OnGuard += OnGuard;
+        card.OnHealing += OnHealing;
+    }
+
 
     private void Update()
     {
@@ -142,18 +159,20 @@ public class GameManager : MonoBehaviour
 
         // 카드를 사용해 플레이어가 공격
         Debug.Log("플레이어 공격");
-        enemynowHP01 -= 10;
-        enemynowHP02 -= 10;
-        UIupdate();
 
+        UIupdate();
+        string monsterName1 = GetComponent<Cardcontroller>().monsterName;
+        monsterName = monsterName1;
         if (enemynowHP01 <= 0)
         {
             enemynowHP01 = 0;
+            enemyanimator01.SetTrigger("GoblinDead");
             isLive1 = false;
         }
         else if(enemynowHP02 <= 0)
         {
             enemynowHP02 = 0;
+            enemyanimator02.SetTrigger("MuchroomDead");
             isLive2 = false;
         }
 
@@ -194,8 +213,10 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(2f);
         // 적이 공격
         Debug.Log("적의 공격");
-        playernowHP -= 5;
+        monsterAttack01();
         // 적 공격이 끝나면 플레이어에게 턴 넘김
+        monsterAttack02();
+
         UIupdate();
 
         if (playernowHP <= 0)
@@ -210,7 +231,8 @@ public class GameManager : MonoBehaviour
             Debug.Log("적의 공격 완료. 플레이어의 턴입니다.");           
             yield return new WaitForSeconds(1f);
             PlayerAttackButton();
-        }        
+        }     
+        
     }
 
     // 덱 숫자 적용
@@ -235,12 +257,70 @@ public class GameManager : MonoBehaviour
         monsterHpBarSlider01.value = enemynowHP01 / enemy01HP;
         monsterHpBarSlider02.value = enemynowHP02 / enemy02HP;
     }
-
+    public void monsterAttack01()
+    {
+        playernowHP -= 5;
+        playeranimator.SetTrigger("DamageGet");
+        enemyanimator01.SetTrigger("GoblinAttack02");
+        UIupdate();
+    }
+    public void monsterAttack02()
+    {
+        playernowHP -= 5;
+        playeranimator.SetTrigger("DamageGet");
+        enemyanimator02.SetTrigger("MuchroomAttack02");
+        UIupdate();
+    }
     public void playerDead()
     {
         // 플레이어 죽었을때 코드
-
+        // 죽었을때 애니
+        playeranimator.SetTrigger("Dead");
         state = State.lose;
         EndBattle();
+        
+    }
+    public void AttackCard01(string monsterName)
+    {
+        Debug.Log($"약공격 사용, 몬스터: {monsterName}");
+        // 적 체력 감소 로직
+        if (monsterName == enemy1.name)
+        {
+            enemynowHP01 -= 5;
+            enemyanimator01.SetTrigger("GoblinTakeDamage");
+        }
+        else if (monsterName == enemy2.name)
+        {
+            enemynowHP02 -= 5;
+            enemyanimator02.SetTrigger("MuchroomTakeDamage");
+        }
+        UIupdate();
+    }
+    public void AttackCard02(string monsterName)
+    {
+        Debug.Log($"골부수기 사용, 몬스터: {monsterName}");
+        // 적 체력 감소 로직
+        if (monsterName == enemy1.name)
+        {
+            enemynowHP01 -= 20;
+            enemyanimator01.SetTrigger("GoblinTakeDamage");
+        }
+        else if (monsterName == enemy2.name)
+        {
+            enemynowHP02 -= 20;
+            enemyanimator02.SetTrigger("MuchroomTakeDamage");
+        }
+        UIupdate();
+    }
+    public void OnGuard()
+    {
+        // 방어도 상승하는 로직
+
+        UIupdate();
+    }
+    public void OnHealing()
+    {
+        playernowHP += 10;
+        UIupdate();
     }
 }

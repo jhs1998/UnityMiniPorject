@@ -222,7 +222,7 @@ GameObject:
   - component: {fileID: 8802761426428137143}
   m_Layer: 6
   m_Name: GuardCard
-  m_TagString: Untagged
+  m_TagString: cards
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -303,6 +303,7 @@ MonoBehaviour:
     rot: {x: 0, y: 0, z: 0, w: 0}
     scale: {x: 0, y: 0, z: 0}
   gameObject: {fileID: 5562595395278469482}
+  monsterName: 
 --- !u!1 &5562595395946006311
 GameObject:
   m_ObjectHideFlags: 0

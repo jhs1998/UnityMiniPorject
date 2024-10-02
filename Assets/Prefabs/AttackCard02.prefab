@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4900231683559998512}
   m_Layer: 6
   m_Name: AttackCard02
-  m_TagString: Untagged
+  m_TagString: cards
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -95,6 +95,7 @@ MonoBehaviour:
     rot: {x: 0, y: 0, z: 0, w: 0}
     scale: {x: 0, y: 0, z: 0}
   gameObject: {fileID: 6372855279362291750}
+  monsterName: 
 --- !u!1 &6372855279516255126
 GameObject:
   m_ObjectHideFlags: 0

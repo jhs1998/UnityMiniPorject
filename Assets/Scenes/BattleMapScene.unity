@@ -1888,6 +1888,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MonsterGob
       objectReference: {fileID: 0}
+    - target: {fileID: 1512706393430045360, guid: 3a72e10ccf400914f9fb2bf4b039b0eb, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 2142362930496457312, guid: 3a72e10ccf400914f9fb2bf4b039b0eb, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -3297,6 +3301,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92a79681d4ab67545b34722726ec84d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  card: {fileID: 0}
   player: {fileID: 1672369341}
   enemy1: {fileID: 532518472}
   enemy2: {fileID: 1143458384}
@@ -3315,6 +3320,9 @@ MonoBehaviour:
   playerHP: 50
   enemy01HP: 30
   enemy02HP: 20
+  playeranimator: {fileID: 1672369342}
+  enemyanimator01: {fileID: 532518475}
+  enemyanimator02: {fileID: 1143458385}
   state: 0
   playerLive: 0
   isLive1: 0
@@ -3322,6 +3330,11 @@ MonoBehaviour:
 --- !u!1 &532518472 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1512706393430045360, guid: 3a72e10ccf400914f9fb2bf4b039b0eb, type: 3}
+  m_PrefabInstance: {fileID: 349586531}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &532518475 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1575112433767025221, guid: 3a72e10ccf400914f9fb2bf4b039b0eb, type: 3}
   m_PrefabInstance: {fileID: 349586531}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &541211344
@@ -7702,6 +7715,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4451330261153685067, guid: 1112c85e270cf3644920579533c4fc1b, type: 3}
   m_PrefabInstance: {fileID: 8515915836883409883}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &1143458385 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8609288966176697004, guid: 1112c85e270cf3644920579533c4fc1b, type: 3}
+  m_PrefabInstance: {fileID: 8515915836883409883}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1144534054 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 473510, guid: 9be44a4216357ce4c99edf7a50416058, type: 3}
@@ -10606,6 +10624,11 @@ Transform:
 --- !u!1 &1672369341 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8704242610631284785, guid: 7ecfd6bcea4bdca4f88ecdc16c099766, type: 3}
+  m_PrefabInstance: {fileID: 2124226888}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1672369342 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 3346372702111793684, guid: 7ecfd6bcea4bdca4f88ecdc16c099766, type: 3}
   m_PrefabInstance: {fileID: 2124226888}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1672927038
@@ -13939,7 +13962,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8704242610631284785, guid: 7ecfd6bcea4bdca4f88ecdc16c099766, type: 3}
       propertyPath: m_Layer
-      value: 9
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8709042680116741299, guid: 7ecfd6bcea4bdca4f88ecdc16c099766, type: 3}
       propertyPath: m_RootOrder
@@ -14072,7 +14095,7 @@ GameObject:
   - component: {fileID: 2127137514}
   m_Layer: 0
   m_Name: CardManager
-  m_TagString: Untagged
+  m_TagString: Cardcontroller
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14251,6 +14274,10 @@ PrefabInstance:
     - target: {fileID: 4451330261153685067, guid: 1112c85e270cf3644920579533c4fc1b, type: 3}
       propertyPath: m_Name
       value: Mushroom
+      objectReference: {fileID: 0}
+    - target: {fileID: 4451330261153685067, guid: 1112c85e270cf3644920579533c4fc1b, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6823469870423608348, guid: 1112c85e270cf3644920579533c4fc1b, type: 3}
       propertyPath: m_RootOrder

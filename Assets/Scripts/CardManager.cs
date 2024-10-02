@@ -60,7 +60,7 @@ public class CardManager : MonoBehaviour
     }
 
     private void Start()
-    {       
+    {        
 
         SetupSkillBuffer();
 
@@ -127,10 +127,25 @@ public class CardManager : MonoBehaviour
     {
         AlignCards(); // 카드 정렬 호출
     }
+    void RemoveCard(GameObject cardToRemove)
+    {
+        // 카드가 리스트에 있으면 제거
+        if (activeCards.Contains(cardToRemove))
+        {
+            activeCards.Remove(cardToRemove);
 
+            // 카드 제거 후 카드 리스트 재정렬
+            AlignCards();
+
+            // 카드 제거
+            Destroy(cardToRemove);
+        }
+    }
     void AlignCards()
     {
         int cardCount = activeCards.Count;
+        if (cardCount == 0) return;
+
         float spacing = Mathf.Max(50f, 200f / cardCount); // 카드 간격 조정
 
         // 카드 배치 범위 계산
@@ -147,7 +162,7 @@ public class CardManager : MonoBehaviour
             Vector3 targetPosition = new Vector3(startX + offset + (i * spacing), minSpawnPosition.y, 0);
 
             // DOTween으로 카드 이동
-            card.transform.DOMove(targetPosition, 1f).SetEase(Ease.OutBounce);
+            card.transform.DOMove(targetPosition, 0.5f).SetEase(Ease.OutQuad);
         }
     }
 }
