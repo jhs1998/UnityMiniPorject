@@ -161,8 +161,19 @@ public class GameManager : MonoBehaviour
         Debug.Log("플레이어 공격");
 
         UIupdate();
-        string monsterName1 = GetComponent<Cardcontroller>().monsterName;
-        monsterName = monsterName1;
+
+        Cardcontroller cardController = GetComponent<Cardcontroller>();
+
+        if (cardController != null)
+        {
+            string monsterName1 = cardController.monsterName;
+            monsterName = monsterName1;
+        }
+        else
+        {
+            Debug.LogWarning("Cardcontroller component not found on this GameObject.");
+        }
+
         if (enemynowHP01 <= 0)
         {
             enemynowHP01 = 0;
