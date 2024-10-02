@@ -218,7 +218,7 @@ GameObject:
   m_Component:
   - component: {fileID: 332875656435034216}
   - component: {fileID: 332875656435034218}
-  - component: {fileID: -3412619366856472180}
+  - component: {fileID: 2215296366145252151}
   - component: {fileID: 332875656435034219}
   m_Layer: 6
   m_Name: AttackCard01
@@ -259,7 +259,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 332875656435034217}
   m_CullTransparentMesh: 1
---- !u!114 &-3412619366856472180
+--- !u!114 &2215296366145252151
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -275,6 +275,7 @@ MonoBehaviour:
     pos: {x: 0, y: 0, z: 0}
     rot: {x: 0, y: 0, z: 0, w: 0}
     scale: {x: 0, y: 0, z: 0}
+  gameObject: {fileID: 332875656435034217}
   enemy1: {fileID: 0}
   enemy2: {fileID: 0}
 --- !u!114 &332875656435034219

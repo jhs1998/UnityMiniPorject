@@ -10,7 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2142362930496457312}
   - component: {fileID: 7610001705107312138}
-  m_Layer: 0
+  - component: {fileID: 2161341174737765141}
+  - component: {fileID: 1575112433767025221}
+  - component: {fileID: 4037863470025200222}
+  m_Layer: 9
   m_Name: MonsterGob
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -84,3 +87,49 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2161341174737765141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1512706393430045360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c4172eab666f3748b1e58b5ff1bdb8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!95 &1575112433767025221
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1512706393430045360}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4a50f919684c8894581f9aa9f8a3e058, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!65 &4037863470025200222
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1512706393430045360}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.933212, y: 2.5198278, z: 0.2}
+  m_Center: {x: 0.03254521, y: -0.6073015, z: 0}

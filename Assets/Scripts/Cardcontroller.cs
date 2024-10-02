@@ -6,26 +6,25 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
 using DG.Tweening;
+using System.Threading;
 
-public class Cardcontroller : MonoBehaviour, IDragHandler, IPointerEnterHandler, IPointerExitHandler
+public class Cardcontroller : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler, IPointerEnterHandler, IPointerExitHandler
 {
     public PRS originPRS;
     private Vector3 originalScale;
-    private bool DropEnemy = false;
-
-    // 적 오브젝트
-    [SerializeField] Image enemy1; // prefap에서 적용안됨
-    [SerializeField] Image enemy2; // prefap에서 적용안됨
-    public void SetEnemies(Image e1, Image e2)
-    {
-        enemy1 = e1;
-        enemy2 = e2;
-    }
+    Vector3 dragBeginPos;
+    
+    [SerializeField] new GameObject gameObject;
+    private RawImage cardImage;
 
     private void Start()
     {
         // 처음 크기 저장
         originalScale = transform.localScale;
+        // 카드 이미지 가져오기
+        cardImage = GetComponent<RawImage>();
+
+        
     }
     public void MoveTransform(PRS prs, bool useDotween, float dotweenTime = 0)
     {
@@ -42,26 +41,30 @@ public class Cardcontroller : MonoBehaviour, IDragHandler, IPointerEnterHandler,
             transform.localScale = prs.scale;
         }
     }
+    public void OnBeginDrag(PointerEventData eventData)
+    {
+        dragBeginPos = transform.position;
+    }
+
     public void OnDrag(PointerEventData eventData)
     {
-        
-        transform.Translate(eventData.delta);
+        transform.position += (Vector3)eventData.delta;
+        //transform.Translate(eventData.delta);
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        // **카드 드래그가 끝났을 때 호출**
-        //DropEnemy = CheckDropEnemy();
-
-        if (!DropEnemy)
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray.origin, ray.direction, out RaycastHit hitInfo))
         {
-            // **적 UI가 아닌 곳에 드롭된 경우 원래 위치로 되돌아옴**
-            ReturnHand();
+            Monster monster = hitInfo.collider.gameObject.GetComponent<Monster>();
+            // 카드가 적1의 UI에 드롭되었는지 확인
+            CardEffect(monster);
+           
         }
         else
         {
-            // **적 UI에 드롭된 경우 데미지 적용**
-            CardEffect();
+            ReturnHand(); // 적이 아니면 리턴
         }
     }
     public void OnPointerEnter(PointerEventData eventData)
@@ -72,36 +75,47 @@ public class Cardcontroller : MonoBehaviour, IDragHandler, IPointerEnterHandler,
     {
         transform.localScale = originalScale;
     }
-    /*
-    private bool CheckDropEnemy()
-    {
-        // 카드가 적1의 UI에 드롭되었는지 확인
-        if () // 적1 충돌 조건
-        {
-            Debug.Log("적1에게 드롭됨");
-            return true;
-        }
-        // 카드가 적2의 UI에 드롭되었는지 확인
-        else if ()// 적2 충돌 조건
-        {
-            Debug.Log("적2에게 드롭됨");
-            return true;
-        }
-
-        return false; // 적이 아니면 false
-    }*/
     private void ReturnHand()
     {
-        // 원래 위치로 카드 이동
-        transform.DOMove(originPRS.pos, 1f).SetEase(Ease.OutBounce);
-        transform.DORotateQuaternion(originPRS.rot, 1f);
-        transform.DOScale(originPRS.scale, 1f);
+        transform.position = dragBeginPos;
     }
 
-    private void CardEffect()
+    private void CardEffect(Monster monster)
     {
+        string cardName = gameObject.name.Replace("(Clone)", "").Trim();
         // 카드의 종류에 따라 적용
-        Debug.Log("적에게 데미지");
-        // GameManager를 통해 적에게 데미지를 주는 로직 추가 가능
+        switch (cardName)
+        {
+            case "약공격":
+            case "골부수기":
+                if (monster != null && monster.name != "Player")
+                {
+                    Debug.Log($"{cardName} 사용 - 적에게 공격");
+                    // GameManager를 통해 적에게 데미지를 주는 로직
+                    // if문으로 약공격 강공격 이벤트
+                    Destroy(gameObject);  // 몬스터에게만 삭제
+                }
+                else
+                {
+                    Debug.Log($"{cardName}는 플레이어에게 사용할 수 없습니다. 카드가 핸드로 돌아갑니다.");
+                    ReturnHand();  // 플레이어에게 사용 시 핸드로 돌아감
+                }
+                break;
+            case "막기":
+            case "치유":
+                if (monster != null && monster.name == "Player")
+                {
+                    Debug.Log($"{cardName} 사용 - 플레이어에게 적용");
+                    // 플레이어에게 방어/힐 적용 로직
+                    // if문으로 구분
+                    Destroy(gameObject);  // 플레이어에게만 삭제
+                }
+                else
+                {
+                    Debug.Log($"{cardName}는 몬스터에게 사용할 수 없습니다. 카드가 핸드로 돌아갑니다.");
+                    ReturnHand();  // 몬스터에게 사용 시 핸드로 돌아감
+                }
+                break;
+        }        
     }
 }

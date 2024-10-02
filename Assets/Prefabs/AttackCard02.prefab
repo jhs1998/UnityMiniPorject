@@ -94,8 +94,7 @@ MonoBehaviour:
     pos: {x: 0, y: 0, z: 0}
     rot: {x: 0, y: 0, z: 0, w: 0}
     scale: {x: 0, y: 0, z: 0}
-  enemy1: {fileID: 0}
-  enemy2: {fileID: 0}
+  gameObject: {fileID: 6372855279362291750}
 --- !u!1 &6372855279516255126
 GameObject:
   m_ObjectHideFlags: 0
