@@ -40,7 +40,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -226, y: -247}
+  m_AnchoredPosition: {x: 673.524, y: 371.91968}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5000002, y: 0.5}
 --- !u!222 &6372855279362291749
@@ -90,6 +90,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35ce79a903d0e6b4195ce00d9ddbc5bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  originPRS:
+    pos: {x: 0, y: 0, z: 0}
+    rot: {x: 0, y: 0, z: 0, w: 0}
+    scale: {x: 0, y: 0, z: 0}
+  enemy1: {fileID: 0}
+  enemy2: {fileID: 0}
 --- !u!1 &6372855279516255126
 GameObject:
   m_ObjectHideFlags: 0

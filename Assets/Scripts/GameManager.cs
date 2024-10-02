@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Animations.Rigging;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -51,6 +52,10 @@ public class GameManager : MonoBehaviour
 
     // 플레이어 턴 UI
     [SerializeField] GameObject playerturnUI;
+    // 게임 오버 UI
+    [SerializeField] GameObject gameoverUI;
+    // 게임 클리어 UI
+    [SerializeField] GameObject gameclearUI;
     //--------------------------------
 
     // 플레이어 체력
@@ -97,6 +102,16 @@ public class GameManager : MonoBehaviour
             BattleStart();
         }
 
+        if (Input.GetKeyDown(KeyCode.R))
+            SceneManager.LoadScene("BattleMapScene");
+
+        if (enemynowHP01 == 0)
+            playerDead();
+        else if (!isLive1 && !isLive2)
+        {
+            state = State.win;
+            EndBattle();
+        }           
     }
     
     void BattleStart()
@@ -109,7 +124,9 @@ public class GameManager : MonoBehaviour
 
     public void PlayerAttackButton()
     {
-        if(state != State.playerTurn)
+        playerturnUI.SetActive(true);
+
+        if (state != State.playerTurn)
         {
             return;
         }
@@ -118,7 +135,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator PlayerAttack()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.5f);
 
         if (playerturnUI == true)
             playerturnUI.SetActive(false);
@@ -164,7 +181,13 @@ public class GameManager : MonoBehaviour
     void EndBattle()
     {
         Debug.Log("전투 종료");
+        if (state == State.win)
+            gameclearUI.SetActive(true);
+        else if (state == State.lose)
+            gameoverUI.SetActive(true);       
     }
+
+
 
     IEnumerator EnemyTurn()
     {
@@ -179,25 +202,12 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("플레이어 사망");
             playernowHP = 0;
-            playerLive = false;
         }
 
-        if (!isLive1 && !isLive2)
-        {
-            state = State.win;
-            EndBattle();
-        }
-        else if (!playerLive)
-        {
-            Debug.Log("플레이어 사망");
-            state = State.lose;
-            EndBattle();
-        }
         else
         {
             state = State.playerTurn;
-            Debug.Log("적의 공격 완료. 플레이어의 턴입니다.");
-            playerturnUI.SetActive(true);
+            Debug.Log("적의 공격 완료. 플레이어의 턴입니다.");           
             yield return new WaitForSeconds(1f);
             PlayerAttackButton();
         }        
@@ -224,5 +234,13 @@ public class GameManager : MonoBehaviour
         playerHpBarSlider.value = playernowHP / playerHP;
         monsterHpBarSlider01.value = enemynowHP01 / enemy01HP;
         monsterHpBarSlider02.value = enemynowHP02 / enemy02HP;
+    }
+
+    public void playerDead()
+    {
+        // 플레이어 죽었을때 코드
+
+        state = State.lose;
+        EndBattle();
     }
 }

@@ -248,7 +248,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -137.6, y: -247}
+  m_AnchoredPosition: {x: 823.5414, y: 385.78683}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5000002, y: 0.5}
 --- !u!222 &5562595395278469481
@@ -302,7 +302,8 @@ MonoBehaviour:
     pos: {x: 0, y: 0, z: 0}
     rot: {x: 0, y: 0, z: 0, w: 0}
     scale: {x: 0, y: 0, z: 0}
-  dropArea: {fileID: 0}
+  enemy1: {fileID: 0}
+  enemy2: {fileID: 0}
 --- !u!1 &5562595395946006311
 GameObject:
   m_ObjectHideFlags: 0
